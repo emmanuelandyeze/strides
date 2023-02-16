@@ -9,6 +9,7 @@ export const authOptions = {
 		}),
 		// ...add more providers here
 	],
+	secret: process.env.NEXT_PUBLIC_SECRET,
 	theme: {
 		logo: '/icon.png',
 		brandcolor: '#5F48C7',
