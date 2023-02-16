@@ -10,10 +10,8 @@ export const authOptions = {
 		// ...add more providers here
 	],
 	secret: process.env.NEXT_PUBLIC_SECRET,
-	theme: {
-		logo: '/icon.png',
-		brandcolor: '#5F48C7',
-		colorScheme: 'auto',
+	pages: {
+		signIn: '/auth/signin',
 	},
 	callbacks: {
 		async session({ session, token, user }) {
