@@ -9,9 +9,11 @@ export const authOptions = {
 		}),
 		// ...add more providers here
 	],
-	// pages: {
-	// 	signIn: '/auth/signin',
-	// },
+	theme: {
+		logo: '/icon.png',
+		brandcolor: '#5F48C7',
+		colorScheme: 'auto',
+	},
 	callbacks: {
 		async session({ session, token, user }) {
 			session.user.username = session.user.name
