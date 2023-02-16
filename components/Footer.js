@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import {
 	SearchIcon,
@@ -13,8 +14,8 @@ function Footer() {
 			style={{ backgroundColor: '#f1f1f1' }}
 		>
 			<div id="tabs" class="flex justify-between">
-				<a
-					href="#"
+				<Link
+					href="/"
 					className="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"
 				>
 					<svg
@@ -25,6 +26,7 @@ function Footer() {
 						stroke="currentColor"
 						class="w-6 h-6.5 inline-block mb-1"
 					>
+						9
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -35,9 +37,9 @@ function Footer() {
 					<span class="tab tab-home block text-xs">
 						Home
 					</span>
-				</a>
+				</Link>
 				<a
-					href="#"
+					href="/community"
 					class="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"
 				>
 					<svg
@@ -59,8 +61,8 @@ function Footer() {
 						Community
 					</span>
 				</a>
-				<a
-					href="#"
+				<Link
+					href="/create"
 					class="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"
 				>
 					<svg
@@ -81,9 +83,9 @@ function Footer() {
 					{/* <span class="tab tab-explore block text-xs">
 						Explore
 					</span> */}
-				</a>
-				<a
-					href="#"
+				</Link>
+				<Link
+					href="/mystrides"
 					class="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"
 				>
 					<svg
@@ -104,9 +106,9 @@ function Footer() {
 					<span class="tab tab-whishlist block text-xs">
 						My Strides
 					</span>
-				</a>
-				<a
-					href="#"
+				</Link>
+				<Link
+					href="/settings"
 					class="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"
 				>
 					<svg
@@ -132,7 +134,7 @@ function Footer() {
 					<span class="tab tab-account block text-xs">
 						Settings
 					</span>
-				</a>
+				</Link>
 			</div>
 		</section>
 	);
