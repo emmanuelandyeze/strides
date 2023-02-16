@@ -1,0 +1,32 @@
+{
+"theme_color" : "#5F48C7",
+"background_color" : "#ffff",
+"display" : "standalone",
+"scope" : "/",
+"start_url" : "/",
+"name" : "The Strides",
+"short_name" : "The Strides",
+"description" : "Share knowledge on a topic of interest, get paid for your expertise and provide mentorship to other subscribers",
+"icons": [
+    {
+        "src": "/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "/icon-256x256.png",
+        "sizes": "256x256",
+        "type": "image/png"
+    },
+    {
+        "src": "/icon-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png"
+    },
+    {
+        "src": "/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+]
+}
