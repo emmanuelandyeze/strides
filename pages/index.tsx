@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Feed from '../components/Feed'
+import Landing from '../components/Landing'
 
 const Home: NextPage = () => {
   return (
@@ -15,9 +16,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/icon.png" />
         <link rel="manifest" href="manifest.json" />
         <meta name="theme-color" content="#fff" />
+        <meta name="description" content="Find knowledge on a topic of
+												interest, connect with like mind,
+												provide mentorship and earn."></meta>
       </Head>
 
       <Header />
+      <Landing />
       <Feed /> 
       <Footer />
       

@@ -11,7 +11,6 @@ import {
 
 function Header() {
 	const { data: session, status } = useSession();
-	console.log(session);
 
 	return (
 		<div
@@ -22,12 +21,15 @@ function Header() {
 				className="flex justify-between max-w-6xl mx-2 items-center lg:mx-auto"
 				style={{ backgroundColor: '#fff' }}
 			>
-				<div className="relative hidden lg:inline-grid h-14 w-24 cursor-pointer">
-					<Image
+				<div className="relative hidden lg:inline-grid h-14 items-center cursor-pointer">
+					{/* <Image
 						src={'/logo.png'}
 						fill
 						style={{ objectFit: 'contain' }}
-					/>
+					/> */}
+					<h1 style={{ fontSize: 24, fontWeight: 600 }}>
+						Strides Connect
+					</h1>
 				</div>
 				<div
 					className="relative lg:hidden mt-1 h-16 items-center w-16 cursor-pointer"
@@ -61,7 +63,7 @@ function Header() {
 							type="text"
 							placeholder="Search"
 							style={{ backgroundColor: '#f1f1f1' }}
-							className="shadow-md block w-full pt-2 pb-2 pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black"
+							className="shadow-sm block w-full pt-2 pb-2 pl-10 sm:text-sm border-gray-300 rounded-md focus:ring-black focus:border-black"
 						/>
 					</div>
 				</div>
