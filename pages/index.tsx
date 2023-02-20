@@ -12,7 +12,7 @@ const Home: NextPage = () => {
 				backgroundColor: '#fff',
 			}}>
       <Head>
-        <title>The Strides</title>
+        <title>Strides Connect</title>
         <link rel="icon" href="/icon.png" />
         <link rel="manifest" href="manifest.json" />
         <meta name="theme-color" content="#fff" />
