@@ -13,6 +13,7 @@ import { modalState } from '../atoms/modalAtom';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
@@ -149,8 +150,8 @@ function Header() {
 										<div className="py-1">
 											<Menu.Item>
 												{({ active }) => (
-													<a
-														href="#"
+													<Link
+														href="/create"
 														className={classNames(
 															active
 																? 'bg-gray-100 text-gray-900'
@@ -173,7 +174,7 @@ function Header() {
 															/>
 														</svg>
 														<p>Create Publication</p>
-													</a>
+													</Link>
 												)}
 											</Menu.Item>
 											<Menu.Item>

@@ -19,7 +19,9 @@ const Home: NextPage = () => {
         <meta name="theme-color" content="#fff" />
         <meta name="description" content="Find knowledge on a topic of
 												interest, connect with like mind,
-												provide mentorship and earn."></meta>
+												provide mentorship and earn."/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.css" integrity="sha384-ko6T2DjISesD0S+wOIeHKMyKsHvWpdQ1s/aiaQMbL+TIXx3jg6uyf9hlv3WWfwYv" />
+      <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.js" integrity="sha384-tsPOhveNsi36uhglzMBNOAA2xd7LlEqQuQHFKi4DwP+6UKrrLGub1MD77Zx18F8e"></script>
       </Head>
       
       <Header />
