@@ -2,11 +2,7 @@ import React from 'react';
 import Footer from '../components/Footer';
 
 function Create() {
-	return (
-		<div>
-			<Footer />
-		</div>
-	);
+	return <div>hello</div>;
 }
 
 export default Create;

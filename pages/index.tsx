@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Feed from '../components/Feed'
 import Landing from '../components/Landing'
+import Modal from '../components/Modal'
 
 const Home: NextPage = () => {
   return (
@@ -20,10 +21,11 @@ const Home: NextPage = () => {
 												interest, connect with like mind,
 												provide mentorship and earn."></meta>
       </Head>
-
+      
       <Header />
       <Landing />
       <Feed /> 
+      <Modal />
       <Footer />
       
     </div>

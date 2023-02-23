@@ -5,11 +5,25 @@ import {
 	SearchIcon,
 	PlusCircleIcon,
 } from '@heroicons/react/24/solid';
+import { useRecoilState } from 'recoil';
+import { modalState } from '../atoms/modalAtom';
+import { Fragment } from 'react';
+import {
+	Menu,
+	Transition,
+	Dialog,
+} from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 import { useSession } from 'next-auth/react';
 
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ');
+}
+
 function Footer() {
 	const { data: session, status } = useSession();
+	const [open, setOpen] = useRecoilState(modalState);
 	return (
 		<>
 			{session ? (
@@ -66,29 +80,120 @@ function Footer() {
 								Community
 							</span>
 						</a>
-						<Link
-							href="/create"
-							class="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"
+						<Menu
+							as="div"
+							className="w-full inline-block text-left"
 						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.1"
-								stroke="currentColor"
-								class="w-13 h-12 inline-block mb-1"
+							<div>
+								<Menu.Button className="w-full justify-center px-0 py-0 text-sm font-medium text-gray-700 focus:outline-none ">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke-width="1.5"
+										stroke="currentColor"
+										class="w-10 h-10 inline-block mt-2"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+										/>
+									</svg>
+								</Menu.Button>
+							</div>
+							{/* <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" /> */}
+							<Transition
+								as={Fragment}
+								enter="transition ease-out duration-100"
+								enterFrom="transform opacity-0 scale-95"
+								enterTo="transform opacity-100 scale-100"
+								leave="transition ease-in duration-75"
+								leaveFrom="transform opacity-100 scale-100"
+								leaveTo="transform opacity-0 scale-95"
 							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-								/>
-							</svg>
+								<Menu.Items
+									style={{
+										marginTop: '-30rem',
+										height: '15rem',
+										paddingTop: '2rem',
+										alignSelf: 'center',
+									}}
+									className="absolute right-8 z-10 w-80 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none "
+								>
+									<p
+										style={{
+											paddingLeft: '1rem',
+											fontWeight: 'bolder',
+											paddingBottom: '1rem',
+										}}
+									>
+										What do you want to do?
+									</p>
+									<div className="py-1">
+										<Menu.Item>
+											{({ active }) => (
+												<Link
+													href="/create"
+													className={classNames(
+														active
+															? 'bg-gray-100 text-gray-900'
+															: 'text-gray-700',
+														'flex flex-row align-middle px-4 py-2 text-sm',
+													)}
+												>
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														fill="none"
+														viewBox="0 0 24 24"
+														stroke-width="1.5"
+														stroke="currentColor"
+														class="w-6 h-6 mr-3"
+													>
+														<path
+															stroke-linecap="round"
+															stroke-linejoin="round"
+															d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+														/>
+													</svg>
+													<p>Create Publication</p>
+												</Link>
+											)}
+										</Menu.Item>
+										<Menu.Item>
+											{({ active }) => (
+												<a
+													href="#"
+													className={classNames(
+														active
+															? 'bg-gray-100 text-gray-900'
+															: 'text-gray-700',
+														'flex flex-row align-middle px-4 py-2 text-sm',
+													)}
+												>
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														fill="none"
+														viewBox="0 0 24 24"
+														strokeWidth={1.5}
+														stroke="currentColor"
+														className="w-6 h-6 mr-3"
+													>
+														<path
+															strokeLinecap="round"
+															strokeLinejoin="round"
+															d="M9.348 14.651a3.75 3.75 0 010-5.303m5.304 0a3.75 3.75 0 010 5.303m-7.425 2.122a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+														/>
+													</svg>
 
-							{/* <span class="tab tab-explore block text-xs">
-						Explore
-					</span> */}
-						</Link>
+													<p>Live Audio Room</p>
+												</a>
+											)}
+										</Menu.Item>
+									</div>
+								</Menu.Items>
+							</Transition>
+						</Menu>
 						<Link
 							href="/mystrides"
 							class="w-full focus:text-purple-800 hover:text-purple-800 justify-center inline-block text-center pt-2 pb-1"

@@ -8,9 +8,19 @@ import {
 	signIn,
 	signOut,
 } from 'next-auth/react';
+import { useRecoilState } from 'recoil';
+import { modalState } from '../atoms/modalAtom';
+import { Fragment } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+
+function classNames(...classes) {
+	return classes.filter(Boolean).join(' ');
+}
 
 function Header() {
 	const { data: session, status } = useSession();
+	const [open, setOpen] = useRecoilState(modalState);
 
 	return (
 		<div
@@ -22,11 +32,6 @@ function Header() {
 				style={{ backgroundColor: '#fff' }}
 			>
 				<div className="relative hidden lg:inline-grid h-14 items-center cursor-pointer">
-					{/* <Image
-						src={'/logo.png'}
-						fill
-						style={{ objectFit: 'contain' }}
-					/> */}
 					<h1 style={{ fontSize: 24, fontWeight: 600 }}>
 						Strides Connect
 					</h1>
@@ -76,7 +81,7 @@ function Header() {
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
 								fill="currentColor"
-								className="w-6 h-6 text-gray-500 hidden lg:inline-grid hover:scale-125 transition-all duration-150 ease-out"
+								className="w-7 h-7 text-gray-500 hidden lg:inline-grid hover:scale-125 transition-all duration-150 ease-out"
 							>
 								<path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
 								<path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
@@ -85,7 +90,7 @@ function Header() {
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
 								fill="currentColor"
-								className="w-6 h-6 text-gray-500 hidden hover:scale-125 transition-all duration-150 ease-out"
+								className="w-7 h-7 text-gray-500 hidden hover:scale-125 transition-all duration-150 ease-out"
 							>
 								<path
 									fillRule="evenodd"
@@ -99,7 +104,7 @@ function Header() {
 								viewBox="0 0 24 24"
 								strokeWidth={1.5}
 								stroke="currentColor"
-								className="w-6 h-6 text-gray-500 hidden lg:inline-grid hover:scale-125 transition-all duration-150 ease-out"
+								className="w-7 h-7 text-gray-500 hidden lg:inline-grid hover:scale-125 transition-all duration-150 ease-out"
 							>
 								<path
 									strokeLinecap="round"
@@ -108,27 +113,226 @@ function Header() {
 								/>
 							</svg>
 
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={1.5}
-								stroke="currentColor"
-								className="w-6 h-6 text-gray-500 hidden lg:inline-grid hover:scale-125 transition-all duration-150 ease-out"
+							<Menu
+								as="div"
+								className="relative md:inline-block text-left hidden"
 							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-								/>
-							</svg>
-							<img
-								onClick={signOut}
-								src={session?.user?.image}
-								alt=""
-								className="h-10 w-10 rounded-full cursor-pointer"
-								style={{ marginRight: '.8rem' }}
-							/>
+								<div>
+									<Menu.Button className="w-full justify-center bg-white px-0 py-0 text-sm font-medium text-gray-700 focus:outline-none ">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke-width="1.5"
+											stroke="currentColor"
+											className="w-8 h-8 text-gray-500 hidden lg:inline-grid hover:scale-125 transition-all duration-150 ease-out"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+											/>
+										</svg>
+									</Menu.Button>
+								</div>
+
+								<Transition
+									as={Fragment}
+									enter="transition ease-out duration-100"
+									enterFrom="transform opacity-0 scale-95"
+									enterTo="transform opacity-100 scale-100"
+									leave="transition ease-in duration-75"
+									leaveFrom="transform opacity-100 scale-100"
+									leaveTo="transform opacity-0 scale-95"
+								>
+									<Menu.Items className="absolute right-0 z-10 mt-4 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
+										<div className="py-1">
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href="#"
+														className={classNames(
+															active
+																? 'bg-gray-100 text-gray-900'
+																: 'text-gray-700',
+															'flex flex-row align-middle px-4 py-2 text-sm',
+														)}
+													>
+														<svg
+															xmlns="http://www.w3.org/2000/svg"
+															fill="none"
+															viewBox="0 0 24 24"
+															stroke-width="1.5"
+															stroke="currentColor"
+															class="w-6 h-6 mr-3"
+														>
+															<path
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
+															/>
+														</svg>
+														<p>Create Publication</p>
+													</a>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href="#"
+														className={classNames(
+															active
+																? 'bg-gray-100 text-gray-900'
+																: 'text-gray-700',
+															'flex flex-row align-middle px-4 py-2 text-sm',
+														)}
+													>
+														<svg
+															xmlns="http://www.w3.org/2000/svg"
+															fill="none"
+															viewBox="0 0 24 24"
+															strokeWidth={1.5}
+															stroke="currentColor"
+															className="w-6 h-6 mr-3"
+														>
+															<path
+																strokeLinecap="round"
+																strokeLinejoin="round"
+																d="M9.348 14.651a3.75 3.75 0 010-5.303m5.304 0a3.75 3.75 0 010 5.303m-7.425 2.122a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+															/>
+														</svg>
+
+														<p>Live Audio Room</p>
+													</a>
+												)}
+											</Menu.Item>
+										</div>
+									</Menu.Items>
+								</Transition>
+							</Menu>
+							<Menu
+								as="div"
+								className="relative inline-block text-left"
+							>
+								<div>
+									<Menu.Button className="w-full justify-center bg-white px-0 py-0 text-sm font-medium text-gray-700 focus:outline-none ">
+										<img
+											src={session?.user?.image}
+											alt=""
+											className="h-10 w-10 rounded-full cursor-pointer"
+											style={{ marginRight: 0 }}
+										/>
+									</Menu.Button>
+								</div>
+
+								<Transition
+									as={Fragment}
+									enter="transition ease-out duration-100"
+									enterFrom="transform opacity-0 scale-95"
+									enterTo="transform opacity-100 scale-100"
+									leave="transition ease-in duration-75"
+									leaveFrom="transform opacity-100 scale-100"
+									leaveTo="transform opacity-0 scale-95"
+								>
+									<Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+										<div className="py-1">
+											<Menu.Item>
+												{({ active }) => (
+													<>
+														<p
+															className={classNames(
+																active
+																	? 'bg-gray-100 text-gray-900 '
+																	: 'text-gray-700',
+																'block px-4 py-0 text-sm',
+															)}
+														>
+															Signed in as
+														</p>
+														<a
+															href="#"
+															className={classNames(
+																active
+																	? 'bg-gray-100 text-gray-900'
+																	: 'text-gray-700',
+																'block px-4 py-2 text-sm',
+															)}
+														>
+															{session?.user?.email}
+														</a>
+													</>
+												)}
+											</Menu.Item>
+										</div>
+										<div className="py-1">
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href="#"
+														className={classNames(
+															active
+																? 'bg-gray-100 text-gray-900'
+																: 'text-gray-700',
+															'block px-4 py-2 text-sm',
+														)}
+													>
+														Account Settings
+													</a>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href="#"
+														className={classNames(
+															active
+																? 'bg-gray-100 text-gray-900'
+																: 'text-gray-700',
+															'block px-4 py-2 text-sm',
+														)}
+													>
+														Support
+													</a>
+												)}
+											</Menu.Item>
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href="#"
+														className={classNames(
+															active
+																? 'bg-gray-100 text-gray-900'
+																: 'text-gray-700',
+															'block px-4 py-2 text-sm',
+														)}
+													>
+														License
+													</a>
+												)}
+											</Menu.Item>
+										</div>
+
+										<div className="py-1">
+											<Menu.Item>
+												{({ active }) => (
+													<a
+														href="#"
+														className={classNames(
+															active
+																? 'bg-gray-100 text-gray-900'
+																: 'text-gray-700',
+															'block px-4 py-2 text-sm',
+														)}
+														onClick={signOut}
+													>
+														Sign Out
+													</a>
+												)}
+											</Menu.Item>
+										</div>
+									</Menu.Items>
+								</Transition>
+							</Menu>
 						</>
 					) : (
 						<>
